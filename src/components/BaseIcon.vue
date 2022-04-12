@@ -1,12 +1,20 @@
 <template>
-  <div class="icon-wrapper" v-html="svg"></div>
+  <div class="icon-wrapper">
+    <svg class="icon" v-html="svg" :width="width" :height="height">
+      <use v-bind="{ 'xlink:href': '/feather-sprite.svg#' + name }" />
+    </svg>
+    <slot></slot>
+  </div>
 </template>
 <script>
 import feather from 'feather-icons'
 
 export default {
   props: {
-    name: String,
+    name: {
+      type: String,
+      default: 'users',
+    },
     width: {
       type: [Number, String],
       default: 24,
